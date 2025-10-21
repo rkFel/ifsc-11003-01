@@ -2,23 +2,293 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>IFSC 11003 |Kade Felty </title>
-  <meta name="description" content="Keyword Rich Description">
+  <title>IFSC 11003 | Kade Felty - Ghostface Edition</title>
+  <meta name="description" content="Spooky Ghostface themed web development portfolio">
   <meta name="author" content="Kade Felty">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Georgia', serif;
+      background: #000;
+      background-image:
+        repeating-linear-gradient(
+          45deg,
+          #000,
+          #000 10px,
+          #0a0a0a 10px,
+          #0a0a0a 20px
+        );
+      color: #fff;
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.8) 100%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+      position: relative;
+      z-index: 2;
+    }
+
+    header {
+      text-align: center;
+      padding: 60px 0;
+      position: relative;
+    }
+
+    .ghostface-icon {
+      width: 200px;
+      height: 200px;
+      margin: 0 auto 20px;
+      position: relative;
+      animation: float 3s ease-in-out infinite;
+      filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.8));
+      transition: all 0.3s ease;
+    }
+
+    .ghostface-icon::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('http://www.pixelken.com/cdn/shop/files/Web_Ghostface_Full.jpg?v=1726058522');
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+      border-radius: 10px;
+    }
+
+    h1 {
+      font-size: 3.5rem;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      background: linear-gradient(45deg, #ff0000, #800000);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-shadow: 0 0 30px rgba(255, 0, 0, 0.5);
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+
+    .subtitle {
+      font-size: 1.5rem;
+      color: #ccc;
+      font-style: italic;
+      margin-bottom: 30px;
+    }
+
+    .phone-number {
+      font-size: 2rem;
+      color: #ff0000;
+      margin: 20px 0;
+      font-family: 'Courier New', monospace;
+      animation: blink 3s infinite;
+    }
+
+    nav {
+      background: rgba(0, 0, 0, 0.8);
+      border: 2px solid #800000;
+      border-radius: 10px;
+      padding: 30px;
+      margin: 40px 0;
+      box-shadow: 0 0 30px rgba(255, 0, 0, 0.3);
+      backdrop-filter: blur(10px);
+    }
+
+    nav ul {
+      list-style: none;
+      text-align: center;
+    }
+
+    nav > ul > li {
+      margin: 20px 0;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 1.3rem;
+      padding: 15px 30px;
+      display: inline-block;
+      border: 1px solid #800000;
+      border-radius: 5px;
+      background: rgba(128, 0, 0, 0.2);
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    nav a::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 0, 0, 0.4), transparent);
+      transition: left 0.5s;
+    }
+
+    nav a:hover::before {
+      left: 100%;
+    }
+
+    nav a:hover {
+      background: rgba(128, 0, 0, 0.4);
+      border-color: #ff0000;
+      box-shadow: 0 0 20px rgba(255, 0, 0, 0.6);
+      transform: scale(1.05);
+    }
+
+    .submenu {
+      margin-top: 15px;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.6);
+      border-radius: 8px;
+      border: 1px solid #600000;
+    }
+
+    .submenu li {
+      margin: 10px 0;
+    }
+
+    .submenu a {
+      font-size: 1.1rem;
+      padding: 10px 20px;
+      background: rgba(255, 0, 0, 0.1);
+    }
+
+    
+    .ghostface-message {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: rgba(0, 0, 0, 0.9);
+      border: 1px solid #800000;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 300px;
+      font-family: 'Courier New', monospace;
+      font-size: 0.9rem;
+      color: #ff0000;
+      z-index: 10;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 20px rgba(255, 0, 0, 0.5); }
+      to { text-shadow: 0 0 40px rgba(255, 0, 0, 0.8), 0 0 60px rgba(255, 0, 0, 0.4); }
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.7; }
+    }
+
+    
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.02); }
+    }
+
+    @media (max-width: 768px) {
+      h1 { font-size: 2.5rem; }
+      .ghostface-icon { font-size: 3rem; }
+      nav { padding: 20px; }
+      nav a { font-size: 1.1rem; padding: 10px 20px; }
+    }
+  </style>
 </head>
 <body>
+  
+  <div class="container">
+    <header>
+      <div class="ghostface-icon"></div>
+      <h1>IFSC 11003</h1>
+      <div class="subtitle">Kade Felty's Spooky Web Portfolio</div>
+      <div class="phone-number">☎️ What's your favorite scary movie?</div>
+    </header>
 
-        <li><a href="prototype/index.html">First Assignment</a></li>
-        
-        <li>Positioning Lab
-          <ul>
-            <li><a href="positioning-lab/float-1.html">Float 1</a></li>
-            <li><a href="positioning-lab/float-2.html">Float 2</a></li>
-            <li><a href="positioning-lab/absolute-1.html">Absolute 1</a></li>
-            <li><a href="positioning-lab/absoulte-2.html">Absolute 2</a></li>
+    <nav>
+      <ul>
+        <li><a href="prototype/index.html">🎃 First Assignment</a></li>
+
+        <li>
+          <a href="#">🩸 Positioning Lab</a>
+          <ul class="submenu">
+            <li><a href="positioning-lab/float-1.html">⚰️ Float 1</a></li>
+            <li><a href="positioning-lab/float-2.html">🔪 Float 2</a></li>
+            <li><a href="positioning-lab/absolute-1.html">💀 Absolute 1</a></li>
+            <li><a href="positioning-lab/absoulte-2.html">👻 Absolute 2</a></li>
           </ul>
         </li>
-    </ul>
-  </nav>
+      </ul>
+    </nav>
+  </div>
+
+  <div class="ghostface-message">
+    "Do you like scary movies? Click on the links if you want to survive..."
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const links = document.querySelectorAll('a');
+      const messages = [
+        "Don't hang up...",
+        "What's your name?",
+        "You never told me your name.",
+        "I want to know who I'm looking at.",
+        "Who's there?",
+        "Round, round the garden. Like a teddy bear."
+      ];
+
+      links.forEach(link => {
+        link.addEventListener('mouseenter', function() {
+          const messageBox = document.querySelector('.ghostface-message');
+          const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+          messageBox.textContent = `"${randomMessage}"`;
+        });
+      });
+
+      document.addEventListener('click', function(e) {
+        if (e.target.tagName !== 'A') {
+          const ghostface = document.querySelector('.ghostface-icon');
+          ghostface.style.filter = ghostface.style.filter.includes('hue-rotate') ?
+            'drop-shadow(0 0 20px rgba(255, 255, 255, 0.8)) brightness(1)' :
+            'drop-shadow(0 0 30px rgba(255, 0, 0, 0.9)) hue-rotate(20deg) brightness(1.2)';
+          ghostface.style.transform = ghostface.style.transform.includes('scale') ? 'scale(1)' : 'scale(1.1)';
+        }
+      });
+    });
+  </script>
 </body>
 </html>
