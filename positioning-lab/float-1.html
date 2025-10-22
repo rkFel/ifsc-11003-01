@@ -1,61 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Positioning Lab</title>
-  <style type="text/css">
-    /* ---------------Box Sizing----------------- */
-    html {
-      box-sizing: border-box;
-    }
-    *,
-    *:before,
-    *:after {
-      box-sizing: inherit;
-    }
+  <style>
+        html { box-sizing: border-box; }
+    *, *::before, *::after { box-sizing: inherit; }
+
     body {
-      background-color: #ECECEC;
-      font-weight: bold;
-      font-family: Tahoma, Geneva, sans-serif;
+      background: #ECECEC;
+      font: bold 16px Tahoma, Geneva, sans-serif;
       color: #FFF;
       text-align: center;
       line-height: 24px;
     }
+
     #wrapper {
-      background-color: #FFF;
+      background: #FFF;
       border: 1px solid #c0c0c0;
       width: 800px;
-      margin-right: auto;
-      margin-left: auto;
+      margin: 0 auto;
       text-shadow: 2px 2px #000;
+      padding: 20px;
+      overflow: hidden;
     }
+
+    
     #navy {
       background-color: #001f3f;
+      width: 360px; height: 150px;
+      float: left;
+      margin-right: 15px;
+      margin-bottom: 10px;
+      align-items: center; justify-content: center;
+      font-size: 18px;
     }
+
     #teal {
       background-color: #39CCCC;
+      width: 360px; height: 150px;
+      float: left;
+      margin-bottom: 10px;
+      align-items: center; justify-content: center;
+      font-size: 18px;
     }
+
     #blue {
       background-color: #0074D9;
+      width: 360px; height: 150px;
+      float: left;
+      clear: left;
+      margin-right: 15px;
+      margin-bottom: 10px;
+      align-items: center; justify-content: center;
+      font-size: 18px;
     }
+
     #aqua {
       background-color: #7FDBFF;
+      width: 360px; height: 150px;
+      float: left;
+      margin-bottom: 10px;
+      align-items: center; justify-content: center;
+      font-size: 18px;
     }
+
     #footer {
       background-color: #666;
+      clear: both;
+      height: 40px; line-height: 40px;
+      color: #FFF;
+      margin-top: 10px;
     }
+
     h1 {
       color: #000;
       font-weight: normal;
-      padding: 50px;
+      padding: 30px;
+      text-shadow: none;
     }
   </style>
 </head>
 <body>
-  <h1>Exercise</h1>
+  <h1>float-1</h1>
   <section id="wrapper">
     <div id="navy">Navy</div>
     <div id="teal">Teal</div>
@@ -64,5 +93,4 @@
     <div id="footer">Footer</div>
   </section>
 </body>
-
 </html>
