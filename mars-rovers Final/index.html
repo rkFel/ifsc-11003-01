@@ -25,7 +25,12 @@
                     <li><a href="mission-history.html" class="nav-link">Mission History</a></li>
                     <li><a href="faq.html" class="nav-link">FAQ</a></li>
                 </ul>
-                <button class="dark-mode-toggle" aria-label="Toggle dark mode">🌙</button>
+                <!-- Simple Controls -->
+                <div class="simple-controls">
+                    <button id="darkModeToggle" class="simple-btn" aria-label="Toggle dark mode" title="Toggle dark mode (Alt+D)">🌙</button>
+                    <button id="speakPage" class="simple-btn" aria-label="Read page content" title="Read page content (Alt+T)">🔊</button>
+                    <button id="stopSpeaking" class="simple-btn" aria-label="Stop reading" title="Stop reading" disabled>⏹️</button>
+                </div>
             </div>
         </nav>
     </header>
@@ -37,6 +42,7 @@
                 <p class="hero-subtitle">Decades of Discovery Through NASA's Mars Rover Program</p>
                 <div class="hero-cta">
                     <a href="mission-history.html" class="cta-button primary">Explore Mission History</a>
+                    <a href="mission-control.html" class="cta-button secondary">🚀 Try Mission Control</a>
                     <a href="https://mars.nasa.gov" class="cta-button secondary" target="_blank" rel="noopener noreferrer">Visit Official NASA Site</a>
                 </div>
             </div>

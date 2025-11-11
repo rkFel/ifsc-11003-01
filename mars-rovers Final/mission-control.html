@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mission Control Dashboard - NASA Mars Rovers</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #0a2f6d 0%, #d63421 100%);
+            color: white;
+            min-height: 100vh;
+        }
+        
+        .dashboard-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .dashboard-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .dashboard-title {
+            font-size: 2.5em;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .control-panel {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .controls {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid #00ff00;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .control-btn {
+            flex: 1;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            background: #00ff00;
+            color: black;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .control-btn:hover {
+            background: #00cc00;
+            transform: translateY(-2px);
+        }
+        
+        .control-btn.active {
+            background: #ff6600;
+            box-shadow: 0 0 20px rgba(255, 102, 0, 0.5);
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        
+        .stat-item {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            border-left: 4px solid #00ff00;
+        }
+        
+        .stat-label {
+            font-size: 0.9em;
+            opacity: 0.8;
+            margin-bottom: 5px;
+        }
+        
+        .stat-value {
+            font-size: 1.4em;
+            font-weight: bold;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .mars-display {
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 10px;
+            padding: 20px;
+            position: relative;
+            height: 300px;
+            overflow: hidden;
+            border: 2px solid #ff6600;
+        }
+        
+        .mars-surface {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(ellipse at center, #8B4513 0%, #654321 40%, #3E2723 100%);
+            animation: dust-storm 20s linear infinite;
+        }
+        
+        @keyframes dust-storm {
+            0% { transform: translateX(0) translateY(0); }
+            25% { transform: translateX(-20px) translateY(-10px); }
+            50% { transform: translateX(20px) translateY(10px); }
+            75% { transform: translateX(-10px) translateY(5px); }
+            100% { transform: translateX(0) translateY(0); }
+        }
+        
+        .rover-position {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #00ff00;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .terrain-info {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #ff6600;
+        }
+        
+        .activity-log {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            padding: 20px;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        
+        .log-entry {
+            margin-bottom: 8px;
+            padding: 5px;
+            border-left: 3px solid #00ff00;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+        
+        .objectives {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        
+        .objective-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+        }
+        
+        .objective-checkbox {
+            font-size: 1.2em;
+        }
+        
+        .status-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            background: #00ff00;
+            border-radius: 50%;
+            margin-right: 10px;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(0, 255, 0, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(0, 255, 0, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 255, 0, 0); }
+        }
+        
+        @media (max-width: 768px) {
+            .control-panel {
+                grid-template-columns: 1fr;
+            }
+            
+            .dashboard-title {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <div class="dashboard-header">
+            <h1 class="dashboard-title">🚀 MISSION CONTROL DASHBOARD</h1>
+            <p><span class="status-indicator"></span>SYSTEMS ONLINE</p>
+        </div>
+        
+        <div class="control-panel">
+            <div class="controls">
+                <div class="button-group">
+                    <button id="startMission" class="control-btn active">
+                        ▶️ START
+                    </button>
+                    <button id="pauseMission" class="control-btn">
+                        ⏸️ PAUSE
+                    </button>
+                    <button id="resetMission" class="control-btn">
+                        🔄 RESET
+                    </button>
+                </div>
+                
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-label">Mission Time</div>
+                        <div class="stat-value" id="missionTime">00:00:00</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">Distance</div>
+                        <div class="stat-value" id="distance">0.0 km</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">Speed</div>
+                        <div class="stat-value" id="speed">0.0 m/s</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">Temperature</div>
+                        <div class="stat-value" id="temperature">-63°C</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">Power</div>
+                        <div class="stat-value" id="power">98%</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">Signal</div>
+                        <div class="stat-value" id="signal">Strong</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mars-display">
+                <div class="mars-surface"></div>
+                <div class="rover-position">
+                    <div>🚐 ROVER POSITION</div>
+                    <div>Lat: <span id="roverLat">0.0°</span></div>
+                    <div>Lon: <span id="roverLon">0.0°</span></div>
+                </div>
+                <div class="terrain-info">
+                    <div>Elevation: <span id="elevation">-4500m</span></div>
+                    <div>Terrain: <span id="terrainType">Rocky Plains</span></div>
+                    <div>Weather: <span id="weather">Clear</span></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="activity-log">
+            <h3>📝 ACTIVITY LOG</h3>
+            <div id="activityLog">
+                <div class="log-entry">Mission Control initialized...</div>
+                <div class="log-entry">All systems nominal</div>
+                <div class="log-entry">Rover telemetry active</div>
+            </div>
+        </div>
+        
+        <div class="objectives">
+            <h3>🎯 MISSION OBJECTIVES</h3>
+            <div class="objective-item">
+                <div class="objective-checkbox">✅</div>
+                <div>Navigate to target coordinates</div>
+            </div>
+            <div class="objective-item">
+                <div class="objective-checkbox">⏳</div>
+                <div>Collect rock samples</div>
+            </div>
+            <div class="objective-item">
+                <div class="objective-checkbox">⏳</div>
+                <div>Analyze soil composition</div>
+            </div>
+            <div class="objective-item">
+                <div class="objective-checkbox">⏳</div>
+                <div>Transmit data to Earth</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mission Control JavaScript
+        console.log('🛰️ Mission Control Dashboard Initialized');
+        
+        // Get elements
+        const startMission = document.getElementById('startMission');
+        const pauseMission = document.getElementById('pauseMission');
+        const resetMission = document.getElementById('resetMission');
+        const missionTime = document.getElementById('missionTime');
+        const distance = document.getElementById('distance');
+        const speed = document.getElementById('speed');
+        const temperature = document.getElementById('temperature');
+        const power = document.getElementById('power');
+        const signal = document.getElementById('signal');
+        const roverLat = document.getElementById('roverLat');
+        const roverLon = document.getElementById('roverLon');
+        const elevation = document.getElementById('elevation');
+        const terrainType = document.getElementById('terrainType');
+        const weather = document.getElementById('weather');
+        const activityLog = document.getElementById('activityLog');
+        
+        // Mission state
+        let missionState = {
+            isRunning: false,
+            isPaused: false,
+            startTime: null,
+            elapsedTime: 0,
+            distanceTraveled: 0,
+            currentSpeed: 0,
+            latitude: 0.0,
+            longitude: 0.0,
+            currentElevation: -4500,
+            currentTerrain: 'Rocky Plains',
+            currentWeather: 'Clear',
+            powerLevel: 98,
+            signalStrength: 'Strong'
+        };
+        
+        // Data arrays
+        const terrainTypes = ['Rocky Plains', 'Sandy Dunes', 'Crater Floor', 'Hillside', 'Valley Bottom', 'Plateau'];
+        const weatherTypes = ['Clear', 'Dusty', 'Windy', 'Calm', 'Partly Cloudy'];
+        const temperatures = [-63, -58, -67, -71, -55, -60];
+        
+        // Event listeners
+        startMission.addEventListener('click', startMissionHandler);
+        pauseMission.addEventListener('click', pauseMissionHandler);
+        resetMission.addEventListener('click', resetMissionHandler);
+        
+        function startMissionHandler() {
+            if (!missionState.isRunning) {
+                missionState.isRunning = true;
+                missionState.isPaused = false;
+                missionState.startTime = Date.now() - missionState.elapsedTime;
+                
+                startMission.classList.add('active');
+                pauseMission.classList.remove('active');
+                
+                addLogEntry('🚀 Mission started');
+                addLogEntry('All systems nominal');
+                addLogEntry('Rover telemetry active');
+            }
+        }
+        
+        function pauseMissionHandler() {
+            if (missionState.isRunning && !missionState.isPaused) {
+                missionState.isPaused = true;
+                startMission.classList.remove('active');
+                pauseMission.classList.add('active');
+                addLogEntry('⏸️ Mission paused');
+            } else if (missionState.isPaused) {
+                missionState.isPaused = false;
+                missionState.startTime = Date.now() - missionState.elapsedTime;
+                pauseMission.classList.remove('active');
+                startMission.classList.add('active');
+                addLogEntry('▶️ Mission resumed');
+            }
+        }
+        
+        function resetMissionHandler() {
+            missionState = {
+                isRunning: false,
+                isPaused: false,
+                startTime: null,
+                elapsedTime: 0,
+                distanceTraveled: 0,
+                currentSpeed: 0,
+                latitude: 0.0,
+                longitude: 0.0,
+                currentElevation: -4500,
+                currentTerrain: 'Rocky Plains',
+                currentWeather: 'Clear',
+                powerLevel: 98,
+                signalStrength: 'Strong'
+            };
+            
+            startMission.classList.remove('active');
+            pauseMission.classList.remove('active');
+            
+            updateDisplay();
+            addLogEntry('🔄 Mission reset');
+            addLogEntry('All systems initialized');
+        }
+        
+        function updateMission() {
+            if (missionState.isRunning && !missionState.isPaused) {
+                // Update time
+                missionState.elapsedTime = Date.now() - missionState.startTime;
+                
+                // Update distance and speed
+                if (Math.random() > 0.7) {
+                    missionState.currentSpeed = Math.random() * 0.05;
+                    missionState.distanceTraveled += missionState.currentSpeed;
+                } else {
+                    missionState.currentSpeed = 0;
+                }
+                
+                // Update position
+                missionState.latitude += (Math.random() - 0.5) * 0.001;
+                missionState.longitude += (Math.random() - 0.5) * 0.001;
+                
+                // Random events
+                if (Math.random() > 0.95) {
+                    missionState.currentTerrain = terrainTypes[Math.floor(Math.random() * terrainTypes.length)];
+                    addLogEntry(`Terrain changed to ${missionState.currentTerrain}`);
+                }
+                
+                if (Math.random() > 0.97) {
+                    missionState.currentWeather = weatherTypes[Math.floor(Math.random() * weatherTypes.length)];
+                    addLogEntry(`Weather: ${missionState.currentWeather}`);
+                }
+                
+                // Update telemetry
+                missionState.powerLevel = Math.max(85, Math.min(100, missionState.powerLevel + (Math.random() - 0.5) * 2));
+                missionState.currentElevation += (Math.random() - 0.5) * 10;
+                
+                // Update objectives
+                updateObjectives();
+            }
+            
+            updateDisplay();
+        }
+        
+        function updateDisplay() {
+            // Update mission time
+            const totalSeconds = Math.floor(missionState.elapsedTime / 1000);
+            const hours = Math.floor(totalSeconds / 3600);
+            const minutes = Math.floor((totalSeconds % 3600) / 60);
+            const seconds = totalSeconds % 60;
+            missionTime.textContent = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            
+            // Update stats
+            distance.textContent = missionState.distanceTraveled.toFixed(1) + ' km';
+            speed.textContent = (missionState.currentSpeed * 100).toFixed(1) + ' m/s';
+            temperature.textContent = temperatures[Math.floor(Math.random() * temperatures.length)] + '°C';
+            power.textContent = missionState.powerLevel.toFixed(0) + '%';
+            signal.textContent = missionState.signalStrength;
+            
+            // Update position
+            roverLat.textContent = missionState.latitude.toFixed(4) + '°';
+            roverLon.textContent = missionState.longitude.toFixed(4) + '°';
+            elevation.textContent = missionState.currentElevation.toFixed(0) + 'm';
+            terrainType.textContent = missionState.currentTerrain;
+            weather.textContent = missionState.currentWeather;
+        }
+        
+        function updateObjectives() {
+            const objectives = document.querySelectorAll('.objective-item');
+            if (missionState.distanceTraveled > 0.1 && objectives[0].querySelector('.objective-checkbox').textContent === '✅') {
+                objectives[0].querySelector('.objective-checkbox').textContent = '✅';
+                addLogEntry('✅ Navigate to target coordinates - COMPLETE');
+            }
+            if (missionState.distanceTraveled > 0.5 && objectives[1].querySelector('.objective-checkbox').textContent === '⏳') {
+                objectives[1].querySelector('.objective-checkbox').textContent = '✅';
+                addLogEntry('✅ Collect rock samples - COMPLETE');
+            }
+            if (missionState.distanceTraveled > 1.0 && objectives[2].querySelector('.objective-checkbox').textContent === '⏳') {
+                objectives[2].querySelector('.objective-checkbox').textContent = '✅';
+                addLogEntry('✅ Analyze soil composition - COMPLETE');
+            }
+            if (missionState.distanceTraveled > 2.0 && objectives[3].querySelector('.objective-checkbox').textContent === '⏳') {
+                objectives[3].querySelector('.objective-checkbox').textContent = '✅';
+                addLogEntry('✅ Transmit data to Earth - COMPLETE');
+                addLogEntry('🎉 ALL MISSION OBJECTIVES COMPLETE!');
+            }
+        }
+        
+        function addLogEntry(message) {
+            const entry = document.createElement('div');
+            entry.className = 'log-entry';
+            const timestamp = new Date().toLocaleTimeString();
+            entry.textContent = `[${timestamp}] ${message}`;
+            activityLog.insertBefore(entry, activityLog.firstChild);
+            
+            // Keep only last 10 entries
+            while (activityLog.children.length > 10) {
+                activityLog.removeChild(activityLog.lastChild);
+            }
+        }
+        
+        // Start update loop
+        setInterval(updateMission, 1000);
+        
+        // Initialize display
+        updateDisplay();
+        addLogEntry('Mission Control initialized');
+        addLogEntry('All systems ready');
+    </script>
+</body>
+</html>
