@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CSS Grid Demo</title>
   <style>
-    /* ---------------Box Sizing----------------- */
+    /*  ---------------Box Sizing-----------------  */
     html {
       box-sizing: border-box;
     }
@@ -17,12 +17,7 @@
       box-sizing: inherit;
     }
 
-    /* ---------------Base Styles----------------- */
-    body {
-      background-color: #ffffff;
-      color: #000;
-    }
-
+    /* Starter */
     main>* {
       font-family: Avenir, Montserrat, Corbel, "URW Gothic", source-sans-pro,
         sans-serif;
@@ -34,36 +29,62 @@
 
     main {
       display: grid;
-      grid-template-areas:
-        "header header"
-        "aside content"
-        "aside blog"
-        "footer footer";
-      grid-template-columns: 1fr 3fr;
       gap: 20px;
       max-width: 80vw;
       margin: 20px auto;
     }
 
-    header.primary {
-      grid-area: header;
-    }
+/* Solution */
 
-    footer.primary {
-      grid-area: footer;
-    }
+main{
+  grid-template-columns:1fr 3fr;
+}
 
-    aside {
-      grid-area: aside;
-    }
+header.primary{
+  grid-row-start: 1;
+  grid-column-start: 1;
+  grid-row-end: 2;
+  grid-column-end: 3;
+  
+  grid-area: 1 / 1 / 2 / 3;
+}
 
-    #content {
-      grid-area: content;
-    }
+#content{
+  grid-row-start: 2;
+  grid-column-start: 2;
+  grid-row-end: 3;
+  grid-column-end: 3;
+  
+  grid-area: 2 / 2 / 3 / 3;
+}
 
-    #blog {
-      grid-area: blog;
-    }
+#blog{
+  grid-row-start: 3;
+  grid-column-start: 2;
+  grid-row-end: 4;
+  grid-column-end: 3;
+  
+  grid-area: 3 / 2 / 4 / 3;
+}
+
+
+aside{
+  grid-row-start: 2;
+  grid-column-start: 1;
+  grid-row-end: 4;
+  grid-column-end: 2;
+  
+  grid-area: 2 / 1 / 4 / 2;
+}
+
+footer.primary{
+  grid-row-start: 4;
+  grid-column-start: 1;
+  grid-row-end: 5;
+  grid-column-end: 3;
+  
+  grid-area: 4 / 1 / 5 / 3;
+}
   </style>
 
 </head>
@@ -73,30 +94,28 @@
     <header class="primary">
       <h1>Site Header</h1>
     </header>
-
-    <aside>
-      <h2>Aside</h2>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia non eaque dolorum sequi velit molestiae ratione ducimus ipsum excepturi atque.</p>
-    </aside>
-
     <section id="content">
       <header>
         <h2>#Content Section Header</h2>
       </header>
       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus expedita repellendus aliquid iusto consectetur ut velit totam explicabo magnam. Culpa non suscipit doloribus corporis neque.</p>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos inventore quo exercitationem temporibus magni deserunt, quasi repellendus reiciendis? Quos, facere doloribus optio quasi numquam dolore!</p>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos inventore quo exercitationem temporibus magni deserunt, quasi repellendus reiciendis? Quos, facere doloribus optio quasi numquam dolore!</p>
       <footer>Section Footer</footer>
     </section>
-
     <section id="blog">
       <header>
         <h2>#Blog Section Header</h2>
       </header>
       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus expedita repellendus aliquid iusto consectetur ut velit totam explicabo magnam. Culpa non suscipit doloribus corporis neque.</p>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos inventore quo exercitationem temporibus magni deserunt, quasi repellendus reiciendis? Quos, facere doloribus optio quasi numquam dolore!</p>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos inventore quo exercitationem temporibus magni deserunt, quasi repellendus reiciendis? Quos, facere doloribus optio quasi numquam dolore!</p>
       <footer>Section Footer</footer>
     </section>
-
+    <aside>
+      <h2>Aside</h2>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia non eaque dolorum sequi velit molestiae ratione ducimus ipsum excepturi atque.</p>
+    </aside>
     <footer class="primary">Site Footer</footer>
   </main>
 </body>
