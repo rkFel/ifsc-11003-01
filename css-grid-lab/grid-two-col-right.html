@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CSS Grid Demo</title>
   <style>
-    /* ---------------Box Sizing----------------- */
+    /*  ---------------Box Sizing-----------------  */
     html {
       box-sizing: border-box;
     }
@@ -17,12 +17,7 @@
       box-sizing: inherit;
     }
 
-    /* ---------------Base Styles----------------- */
-    body {
-      background-color: #ffffff;
-      color: #000;
-    }
-
+    /* Starter */
     main>* {
       font-family: Avenir, Montserrat, Corbel, "URW Gothic", source-sans-pro,
         sans-serif;
@@ -36,8 +31,8 @@
       display: grid;
       grid-template-areas:
         "header header"
-        "content aside"
-        "blog aside"
+        "blog content"
+        "aside aside"
         "footer footer";
       grid-template-columns: 3fr 1fr;
       gap: 20px;
@@ -47,23 +42,23 @@
 
     header.primary {
       grid-area: header;
-    }
-
-    footer.primary {
-      grid-area: footer;
-    }
-
-    aside {
-      grid-area: aside;
-    }
+    } 
 
     #content {
       grid-area: content;
-    }
+    } 
 
     #blog {
       grid-area: blog;
-    }
+    } 
+
+    aside {
+      grid-area: aside;
+    } 
+
+    footer.primary {
+      grid-area: footer;
+    } 
   </style>
 
 </head>
@@ -73,30 +68,28 @@
     <header class="primary">
       <h1>Site Header</h1>
     </header>
-
     <section id="content">
       <header>
         <h2>#Content Section Header</h2>
       </header>
       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus expedita repellendus aliquid iusto consectetur ut velit totam explicabo magnam. Culpa non suscipit doloribus corporis neque.</p>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos inventore quo exercitationem temporibus magni deserunt, quasi repellendus reiciendis? Quos, facere doloribus optio quasi numquam dolore!</p>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos inventore quo exercitationem temporibus magni deserunt, quasi repellendus reiciendis? Quos, facere doloribus optio quasi numquam dolore!</p>
       <footer>Section Footer</footer>
     </section>
-
     <section id="blog">
       <header>
         <h2>#Blog Section Header</h2>
       </header>
       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus expedita repellendus aliquid iusto consectetur ut velit totam explicabo magnam. Culpa non suscipit doloribus corporis neque.</p>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos inventore quo exercitationem temporibus magni deserunt, quasi repellendus reiciendis? Quos, facere doloribus optio quasi numquam dolore!</p>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos inventore quo exercitationem temporibus magni deserunt, quasi repellendus reiciendis? Quos, facere doloribus optio quasi numquam dolore!</p>
       <footer>Section Footer</footer>
     </section>
-
     <aside>
       <h2>Aside</h2>
       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia non eaque dolorum sequi velit molestiae ratione ducimus ipsum excepturi atque.</p>
     </aside>
-
     <footer class="primary">Site Footer</footer>
   </main>
 </body>
