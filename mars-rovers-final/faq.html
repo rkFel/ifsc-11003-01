@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Frequently Asked Questions about NASA Mars rovers and Mars exploration. Learn about rover operations, Mars conditions, and scientific discoveries.">
+    <meta name="keywords" content="Mars rover FAQ, NASA Mars questions, Mars exploration FAQ, rover operations, Mars facts">
+    <meta name="robots" content="noindex">
+    <title>FAQ - NASA Mars Rovers</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* FAQ Specific Styles */
+        .category-btn {
+            background: rgba(0, 0, 0, 0.1);
+            border: 2px solid #007bff;
+            color: #007bff;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .category-btn:hover {
+            background: #007bff;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
+        }
+
+        .category-btn.active {
+            background: #007bff;
+            color: white;
+        }
+
+        .faq-item {
+            margin-bottom: 20px;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .faq-question {
+            width: 100%;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border: none;
+            padding: 20px;
+            text-align: left;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: linear-gradient(135deg, #e9ecef 0%, #dee2e6 100%);
+        }
+
+        .faq-question.active {
+            background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+            color: white;
+        }
+
+        .faq-icon {
+            font-size: 1.5rem;
+            font-weight: bold;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-question.active .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            background: white;
+        }
+
+        .faq-answer.active {
+            max-height: 1000px;
+            padding: 20px;
+        }
+
+        .faq-answer p {
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .faq-answer ul {
+            margin-bottom: 15px;
+            padding-left: 20px;
+        }
+
+        .faq-answer li {
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+
+        .faq-answer strong {
+            color: #007bff;
+        }
+
+        .resource-link {
+            display: block;
+            background: white;
+            border: 2px solid #007bff;
+            border-radius: 10px;
+            padding: 20px;
+            text-decoration: none;
+            color: #333;
+            transition: all 0.3s ease;
+            margin-bottom: 15px;
+        }
+
+        .resource-link:hover {
+            background: #007bff;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 16px rgba(0, 123, 255, 0.3);
+        }
+
+        .resource-link h3 {
+            margin: 0 0 10px 0;
+            color: #007bff;
+            transition: color 0.3s ease;
+        }
+
+        .resource-link:hover h3 {
+            color: white;
+        }
+
+        .resource-link p {
+            margin: 0;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .section-jump {
+            position: fixed;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+            background: rgba(0, 123, 255, 0.9);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            z-index: 1000;
+            max-width: 200px;
+            font-size: 0.9rem;
+        }
+
+        .section-jump h4 {
+            margin: 0 0 10px 0;
+            font-size: 1rem;
+        }
+
+        .section-jump ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .section-jump li {
+            margin-bottom: 8px;
+        }
+
+        .section-jump a {
+            color: white;
+            text-decoration: none;
+            font-size: 0.8rem;
+            opacity: 0.9;
+            transition: opacity 0.3s ease;
+        }
+
+        .section-jump a:hover {
+            opacity: 1;
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .section-jump {
+                position: static;
+                transform: none;
+                margin-bottom: 20px;
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <nav class="navbar" aria-label="Main navigation">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <img src="images/nasa-logo.jpg" alt="NASA Logo" class="nasa-logo">
+                    <span class="site-title">NASA Mars Rovers</span>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="mission-history.html" class="nav-link">Mission History</a></li>
+                    <li><a href="faq.html" class="nav-link active">FAQ</a></li>
+                    <li><a href="contact.html" class="nav-link">Contact</a></li>
+                </ul>
+                <!-- Simple Controls -->
+                <div class="simple-controls">
+                    <button id="darkModeToggle" class="simple-btn" aria-label="Toggle dark mode" title="Toggle dark mode (Alt+D)">🌙</button>
+                    <button id="speakPage" class="simple-btn" aria-label="Read page content" title="Read page content (Alt+T)">🔊</button>
+                    <button id="stopSpeaking" class="simple-btn" aria-label="Stop reading" title="Stop reading" disabled>⏹️</button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-hero">
+            <div class="container">
+                <h1 class="page-title">Frequently Asked Questions</h1>
+                <p class="page-subtitle">Everything you want to know about Mars rovers and the Red Planet</p>
+            </div>
+        </section>
+
+        <section class="faq-section">
+            <div class="container">
+                <div class="section-jump">
+                    <h4>Jump to Section</h4>
+                    <ul>
+                        <li><a href="#rovers-section" onclick="scrollToSection('rovers-section')">Mars Rovers</a></li>
+                        <li><a href="#mars-section" onclick="scrollToSection('mars-section')">Mars Planet</a></li>
+                        <li><a href="#missions-section" onclick="scrollToSection('missions-section')">Missions</a></li>
+                        <li><a href="#technology-section" onclick="scrollToSection('technology-section')">Technology</a></li>
+                        <li><a href="#resources-section" onclick="scrollToSection('resources-section')">Resources</a></li>
+                    </ul>
+                </div>
+
+                <div class="faq-categories">
+                    <h2 class="section-title" id="categories-section">Browse Questions by Category</h2>
+                    <div class="category-nav">
+                        <button class="category-btn active" data-category="all" onclick="filterFAQs('all')">All Questions</button>
+                        <button class="category-btn" data-category="rovers" onclick="filterFAQs('rovers')">Mars Rovers</button>
+                        <button class="category-btn" data-category="mars" onclick="filterFAQs('mars')">Mars Planet</button>
+                        <button class="category-btn" data-category="missions" onclick="filterFAQs('missions')">Missions</button>
+                        <button class="category-btn" data-category="technology" onclick="filterFAQs('technology')">Technology</button>
+                    </div>
+                </div>
+
+                <div class="faq-container">
+                    <!-- Mars Rovers Category -->
+                    <div id="rovers-section">
+                        <h3 class="section-title">Mars Rovers</h3>
+                        <article class="faq-item" data-category="rovers">
+                            <button class="faq-question" onclick="toggleFAQ(this)" aria-expanded="false">
+                                <span>How long do Mars rovers typically last?</span>
+                                <span class="faq-icon">+</span>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Mars rovers have far exceeded their planned mission durations:</p>
+                                <ul>
+                                    <li><strong>Sojourner:</strong> Planned 7 days, operated 83 days</li>
+                                    <li><strong>Spirit:</strong> Planned 90 days, operated 6 years (2004-2010)</li>
+                                    <li><strong>Opportunity:</strong> Planned 90 days, operated nearly 15 years (2004-2018)</li>
+                                    <li><strong>Curiosity:</strong> Planned 2 years, still operating after 12+ years</li>
+                                    <li><strong>Perseverance:</strong> Planned 2 years, still operating after 4+ years</li>
+                                </ul>
+                                <p>The extended missions are possible through careful engineering, solar panel cleaning (by Martian winds), and robust systems design.</p>
+                            </div>
+                        </article>
+
+                        <article class="faq-item" data-category="rovers">
+                            <button class="faq-question" onclick="toggleFAQ(this)" aria-expanded="false">
+                                <span>How do rovers communicate with Earth?</span>
+                                <span class="faq-icon">+</span>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Mars rovers use several communication methods:</p>
+                                <ul>
+                                    <li><strong>Direct to Earth:</strong> Using high-gain antennas for low-bandwidth data transmission</li>
+                                    <li><strong>Relay via Orbiters:</strong> Primary method - rovers send data to Mars orbiters (like MRO, Odyssey, MAVEN), which then transmit it to Earth</li>
+                                    <li><strong>UHF:</strong> For rover-to-orbiter communication (higher bandwidth)</li>
+                                    <li><strong>X-band:</strong> For direct Earth communication</li>
+                                </ul>
+                                <p>Signal travel time varies from 4-24 minutes one way, depending on Mars-Earth distance.</p>
+                            </div>
+                        </article>
+
+                        <article class="faq-item" data-category="rovers">
+                            <button class="faq-question" onclick="toggleFAQ(this)" aria-expanded="false">
+                                <span>What happens to rovers when their missions end?</span>
+                                <span class="faq-icon">+</span>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Different fates await Mars rovers:</p>
+                                <ul>
+                                    <li><strong>Sojourner:</strong> Contact lost after 83 days, likely due to battery failure in extreme cold</li>
+                                    <li><strong>Spirit:</strong> Got stuck in soft soil in 2009, became stationary science platform until contact lost in 2010</li>
+                                    <li><strong>Opportunity:</strong> Contact lost during 2018 global dust storm, never reestablished</li>
+                                    <li><strong>Curiosity & Perseverance:</strong> Still operating, will eventually be decommissioned on Mars</li>
+                                </ul>
+                                <p>All retired rovers remain on Mars as monuments to human exploration and may be visited by future human astronauts.</p>
+                            </div>
+                        </article>
+
+                        <article class="faq-item" data-category="rovers">
+                            <button class="faq-question" onclick="toggleFAQ(this)" aria-expanded="false">
+                                <span>How fast can Mars rovers move?</span>
+                                <span class="faq-icon">+</span>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Mars rovers move very slowly and carefully:</p>
+                                <ul>
+                                    <li><strong>Sojourner:</strong> 0.4 cm/s (1.6 cm/min)</li>
+                                    <li><strong>Spirit & Opportunity:</strong> 5 cm/s (maximum, average much slower)</li>
+                                    <li><strong>Curiosity:</strong> 4 cm/s (maximum, usually moves 30-100 meters per day)</li>
+                                    <li><strong>Perseverance:</strong> 4.2 cm/s (maximum, can auto-navigate up to 200 meters per day)</li>
+                                </ul>
+                                <p>Slow speeds are necessary for safety, energy conservation, and detailed scientific observation of terrain.</p>
+                            </div>
+                        </article>
+                    </div>
+
+                    <!-- Mars Planet Category -->
+                    <div id="mars-section">
+                        <h3 class="section-title">Mars Planet</h3>
+                        <article class="faq-item" data-category="mars">
+                            <button class="faq-question" onclick="toggleFAQ(this)" aria-expanded="false">
+                                <span>What are the conditions like on Mars?</span>
+                                <span class="faq-icon">+</span>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Mars is a harsh, extreme environment:</p>
+                                <ul>
+                                    <li><strong>Temperature:</strong> Average -63°F (-53°C), can range from -225°F to 70°F (-143°C to 21°C)</li>
+                                    <li><strong>Atmosphere:</strong> 95% carbon dioxide, less than 1% of Earth's atmospheric pressure</li>
+                                    <li><strong>Gravity:</strong> 38% of Earth's gravity</li>
+                                    <li><strong>Day Length:</strong> 24 hours 37 minutes (called a "sol")</li>
+                                    <li><strong>Year Length:</strong> 687 Earth days</li>
+                                    <li><strong>Radiation:</strong> High levels due to thin atmosphere and lack of magnetic field</li>
+                                    <li><strong>Weather:</strong> Dust storms can cover the entire planet for weeks</li>
+                                </ul>
+                            </div>
+                        </article>
+
+                        <article class="faq-item" data-category="mars">
+                            <button class="faq-question" onclick="toggleFAQ(this)" aria-expanded="false">
+                                <span>Did Mars ever have life?</span>
+                                <span class="faq-icon">+</span>
+                            </button>
+                            <div class="faq-answer">
+                                <p>While we haven't found definitive evidence of past or present life, rovers have discovered compelling evidence:</p>
+                                <ul>
+                                    <li><strong>Water Evidence:</strong> Definitive proof that liquid water existed on Mars for billions of years</li>
+                                    <li><strong>Organic Molecules:</strong> Curiosity found complex organic molecules in 3-billion-year-old mudstone</li>
+                                    <li><strong>Habitable Conditions:</strong> Ancient Mars had all the ingredients needed for life as we know it</li>
+                                    <li><strong>Energy Sources:</strong> Chemical energy sources that microbes could have used</li>
+                                </ul>
+                                <p>Perseverance is currently searching for actual biosignatures in Jezero Crater, an ancient river delta. The question of whether Mars ever hosted life remains one of science's greatest mysteries.</p>
+                            </div>
+                        </article>
+
+                        <article class="faq-item" data-category="mars">
+                            <button class="faq-question" onclick="toggleFAQ(this)" aria-expanded="false">
+                                <span>Why is Mars called the "Red Planet"?</span>
+                                <span class="faq-icon">+</span>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Mars appears red due to iron oxide (rust) on its surface:</p>
+                                <ul>
+                                    <li><strong>Surface Composition:</strong> Martian soil contains 15-20% iron oxide</li>
+                                    <li><strong>Rusting Process:</strong> Iron in rocks reacted with oxygen and water billions of years ago</li>
+                                    <li><strong>Dust Storms:</strong> Fine red dust gets kicked up into the atmosphere, enhancing the red color</li>
+                                    <li><strong>Appearance:</strong> The planet looks reddish-pink from Earth and especially from the surface</li>
+                                </ul>
+                                <p>Despite the nickname, Mars actually has varied colors including brown, tan, gold, and even greenish-blue in some mineral deposits.</p>
+                            </div>
+                        </article>
+                    </div>
+
+                    <!-- Missions Category -->
+                    <div id="missions-section">
+                        <h3 class="section-title">Missions</h3>
+                        <article class="faq-item" data-category="missions">
+                            <button class="faq-question" onclick="toggleFAQ(this)" aria-expanded="false">
+                                <span>How much do Mars rover missions cost?</span>
+                                <span class="faq-icon">+</span>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Mars rover missions represent significant investments in science and exploration:</p>
+                                <ul>
+                                    <li><strong>Pathfinder/Sojourner (1997):</strong> $280 million total</li>
+                                    <li><strong>Spirit & Opportunity (2004):</strong> $820 million for both rovers</li>
+                                    <li><strong>Curiosity (2012):</strong> $2.5 billion including operations</li>
+                                    <li><strong>Perseverance (2021):</strong> $2.7 billion plus $300 million for first year operations</li>
+                                </ul>
+                                <p>These costs include development, launch, landing systems, and years of operations. The scientific discoveries and technological advances generated provide immense value.</p>
+                            </div>
+                        </article>
+
+                        <article class="faq-item" data-category="missions">
+                            <button class="faq-question" onclick="toggleFAQ(this)" aria-expanded="false">
+                                <span>How are landing sites chosen for rovers?</span>
+                                <span class="faq-icon">+</span>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Landing site selection is a multi-year process considering many factors:</p>
+                                <ul>
+                                    <li><strong>Scientific Value:</strong> Geological features suggesting past water, interesting rock formations</li>
+                                    <li><strong>Safety:</strong> Relatively flat terrain, few large rocks, low wind conditions</li>
+                                    <li><strong>Engineering Constraints:</strong> Altitude, latitude for solar power/communications</li>
+                                    <li><strong>Accessibility:</strong> Areas that rover can actually reach and explore</li>
+                                </ul>
+                                <p>For example, Perseverance landed in Jezero Crater because orbital data showed it was an ancient river delta - an excellent place to search for signs of past life.</p>
+                            </div>
+                        </article>
+
+                        <article class="faq-item" data-category="missions">
+                            <button class="faq-question" onclick="toggleFAQ(this)" aria-expanded="false">
+                                <span>What's next for Mars exploration?</span>
+                                <span class="faq-icon">+</span>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Exciting missions are planned for the coming decades:</p>
+                                <ul>
+                                    <li><strong>Mars Sample Return:</strong> Joint NASA-ESA mission to return Perseverance's samples to Earth (late 2020s-2030s)</li>
+                                    <li><strong>Future Rovers:</strong> More advanced rovers with enhanced capabilities</li>
+                                    <li><strong>Human Missions:</strong> NASA's Artemis program aims to return humans to the Moon as preparation for Mars missions</li>
+                                    <li><strong>International Collaboration:</strong> More countries participating in Mars exploration</li>
+                                </ul>
+                                <p>Long-term goals include establishing a sustained human presence on Mars and potentially terraforming aspects of the planet.</p>
+                            </div>
+                        </article>
+                    </div>
+
+                    <!-- Technology Category -->
+                    <div id="technology-section">
+                        <h3 class="section-title">Technology</h3>
+                        <article class="faq-item" data-category="technology">
+                            <button class="faq-question" onclick="toggleFAQ(this)" aria-expanded="false">
+                                <span>How are rovers powered on Mars?</span>
+                                <span class="faq-icon">+</span>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Power systems vary by rover design:</p>
+                                <ul>
+                                    <li><strong>Solar Panels (Sojourner, Spirit, Opportunity):</strong> Convert sunlight to electricity, limited by dust and seasons</li>
+                                    <li><strong>RTG (Curiosity, Perseverance):</strong> Radioisotope Thermoelectric Generators using plutonium-238 decay for consistent power</li>
+                                    <li><strong>Batteries:</strong> All rovers have rechargeable batteries to store power for night operations</li>
+                                </ul>
+                                <p>RTGs are preferred for long missions because they provide consistent power regardless of weather, dust storms, or seasons.</p>
+                            </div>
+                        </article>
+
+                        <article class="faq-item" data-category="technology">
+                            <button class="faq-question" onclick="toggleFAQ(this)" aria-expanded="false">
+                                <span>How do rovers survive Martian nights and winters?</span>
+                                <span class="faq-icon">+</span>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Rovers have several survival mechanisms:</p>
+                                <ul>
+                                    <li><strong>Insulation:</strong> Multi-layer insulation and heaters keep electronics warm</li>
+                                    <li><strong>Battery Systems:</strong> Store energy for nighttime operations and heating</li>
+                                    <li><strong>Hibernation Modes:</strong> Reduce power consumption during extreme conditions</li>
+                                    <li><strong>RTGs:</strong> Provide continuous heat and power (Curiosity, Perseverance)</li>
+                                    <li><strong>Smart Positioning:</strong> Rovers can orient themselves to maximize solar heating</li>
+                                </ul>
+                                <p>Temperatures can drop to -225°F (-143°C) at night, so thermal management is critical for survival.</p>
+                            </div>
+                        </article>
+
+                        <article class="faq-item" data-category="technology">
+                            <button class="faq-question" onclick="toggleFAQ(this)" aria-expanded="false">
+                                <span>What instruments do rovers carry?</span>
+                                <span class="faq-icon">+</span>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Each rover carries a suite of scientific instruments:</p>
+                                <ul>
+                                    <li><strong>Cameras:</strong> Multiple cameras for navigation, science, and public outreach</li>
+                                    <li><strong>Spectrometers:</strong> Analyze rock and soil composition</li>
+                                    <li><strong>Drills/Scoops:</strong> Collect samples for analysis</li>
+                                    <li><strong>Weather Stations:</strong> Monitor atmospheric conditions</li>
+                                    <li><strong>Specialized Instruments:</strong> Each rover has unique tools for specific science goals</li>
+                                </ul>
+                                <p>Perseverance even carries MOXIE, which produces oxygen from Mars' CO2 atmosphere - a test for future human missions.</p>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+
+                <section class="additional-resources" id="resources-section">
+                    <h2>Want to Learn More?</h2>
+                    <div class="resources-grid">
+                        <a href="https://mars.nasa.gov" class="resource-link" target="_blank" rel="noopener noreferrer">
+                            <h3>NASA Mars Website</h3>
+                            <p>Official NASA Mars exploration portal with latest news and images</p>
+                        </a>
+                        <a href="https://eyes.nasa.gov/apps/mars/" class="resource-link" target="_blank" rel="noopener noreferrer">
+                            <h3>NASA's Eyes on Mars</h3>
+                            <p>Interactive 3D visualization of current rover positions and missions</p>
+                        </a>
+                        <a href="https://photojournal.jpl.nasa.gov" class="resource-link" target="_blank" rel="noopener noreferrer">
+                            <h3>NASA Image Gallery</h3>
+                            <p>Complete collection of Mars rover images and raw data</p>
+                        </a>
+                        <a href="https://www.nasa.gov/audience/forstudents/5-8/features/nasa-knows/what-is-mars-58.html" class="resource-link" target="_blank" rel="noopener noreferrer">
+                            <h3>NASA Science for Kids</h3>
+                            <p>Student-friendly information about Mars and space exploration</p>
+                        </a>
+                    </div>
+                </section>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>NASA Mars Rovers</h4>
+                    <p>Educational resource showcasing NASA's robotic exploration of Mars</p>
+                    <img src="images/nasa-logo.jpg" alt="NASA Logo" class="footer-logo">
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="mission-history.html">Mission History</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="https://mars.nasa.gov" target="_blank" rel="noopener noreferrer">NASA Mars</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>Questions about Mars exploration?</p>
+                    <a href="mailto:info@nasa.gov" class="email-link">info@nasa.gov</a>
+                </div>
+            </div>
+            <div class="footer-disclaimer">
+                <p>This website was created as a student project for educational purposes. NASA is not affiliated with or endorsing this work.</p>
+            </div>
+            <div class="footer-copyright">
+                <p>&copy; 2025 Educational Project. All NASA images used are in the public domain.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script>
+        function toggleFAQ(button) {
+            const answer = button.nextElementSibling;
+            const icon = button.querySelector('.faq-icon');
+            const isExpanded = button.getAttribute('aria-expanded') === 'true';
+            
+            // Close all other FAQs in same category
+            const categoryItems = button.closest('.faq-container').querySelectorAll('.faq-item');
+            categoryItems.forEach(item => {
+                const otherButton = item.querySelector('.faq-question');
+                const otherAnswer = item.querySelector('.faq-answer');
+                const otherIcon = item.querySelector('.faq-icon');
+                
+                if (otherButton !== button) {
+                    otherButton.classList.remove('active');
+                    otherAnswer.classList.remove('active');
+                    otherButton.setAttribute('aria-expanded', 'false');
+                    otherIcon.textContent = '+';
+                }
+            });
+            
+            // Toggle current FAQ
+            if (isExpanded) {
+                button.classList.remove('active');
+                answer.classList.remove('active');
+                button.setAttribute('aria-expanded', 'false');
+                icon.textContent = '+';
+            } else {
+                button.classList.add('active');
+                answer.classList.add('active');
+                button.setAttribute('aria-expanded', 'true');
+                icon.textContent = '×';
+            }
+        }
+
+        function filterFAQs(category) {
+            const faqItems = document.querySelectorAll('.faq-item');
+            const categoryBtns = document.querySelectorAll('.category-btn');
+            
+            // Update active button
+            categoryBtns.forEach(btn => btn.classList.remove('active'));
+            document.querySelector(`[data-category="${category}"]`).classList.add('active');
+            
+            // Show/hide FAQ items
+            faqItems.forEach(item => {
+                if (category === 'all' || item.getAttribute('data-category') === category) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // Initialize FAQ functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set initial state - only show first FAQ in each category
+            const categories = ['rovers', 'mars', 'missions', 'technology'];
+            categories.forEach(category => {
+                const categoryItems = document.querySelectorAll(`[data-category="${category}"]`);
+                if (categoryItems.length > 0) {
+                    // Close all FAQs in category
+                    categoryItems.forEach(item => {
+                        const button = item.querySelector('.faq-question');
+                        const answer = item.querySelector('.faq-answer');
+                        const icon = item.querySelector('.faq-icon');
+                        
+                        button.classList.remove('active');
+                        answer.classList.remove('active');
+                        button.setAttribute('aria-expanded', 'false');
+                        icon.textContent = '+';
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
